@@ -44,61 +44,61 @@ public class MergeTwoSortedLists {
         System.out.println(resString.toString());
 
     }
-}
 
-class ListNode {
-    int val;
-    ListNode next;
+    static class ListNode {
+        int val;
+        ListNode next;
 
-    ListNode() {
+        ListNode() {
+        }
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 
-    ListNode(int val) {
-        this.val = val;
-    }
+    static class Solution {
+        public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+            ListNode current = new ListNode();
+            ListNode start = current;
 
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
-class Solution {
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode current = new ListNode();
-        ListNode start = current;
-
-        while (list1 != null && list2 != null) {
-            if (list1.val < list2.val) {
-                current.next = list1;
-                list1 = list1.next;
-            } else {
-                current.next = list2;
-                list2 = list2.next;
+            while (list1 != null && list2 != null) {
+                if (list1.val < list2.val) {
+                    current.next = list1;
+                    list1 = list1.next;
+                } else {
+                    current.next = list2;
+                    list2 = list2.next;
+                }
+                current = current.next;
             }
-            current = current.next;
+            current.next = list1 != null ? list1 : list2;
+            return start.next;
         }
-        current.next = list1 != null ? list1 : list2;
-        return start.next;
-    }
 
-    public ListNode createListFromDigits(BigInteger number) {
-        ListNode resultList = null;
-        for (int digit : splitToDigitsList(number)) {
-            resultList = new ListNode(digit, resultList);
+        public ListNode createListFromDigits(BigInteger number) {
+            ListNode resultList = null;
+            for (int digit : splitToDigitsList(number)) {
+                resultList = new ListNode(digit, resultList);
+            }
+            return resultList;
         }
-        return resultList;
-    }
 
-    public List<Integer> splitToDigitsList(BigInteger sum) {
-        return sum.toString().chars().mapToObj(Character::getNumericValue).toList();
-    }
+        public List<Integer> splitToDigitsList(BigInteger sum) {
+            return sum.toString().chars().mapToObj(Character::getNumericValue).toList();
+        }
 
 
-    public ListNode appendListNumber(ListNode listNode, StringBuilder builder) {
-        return Optional.ofNullable(listNode).map(node -> {
-            builder.insert(0, node.val);
-            return node.next;
-        }).orElse(null);
+        public ListNode appendListNumber(ListNode listNode, StringBuilder builder) {
+            return Optional.ofNullable(listNode).map(node -> {
+                builder.insert(0, node.val);
+                return node.next;
+            }).orElse(null);
+        }
     }
 }

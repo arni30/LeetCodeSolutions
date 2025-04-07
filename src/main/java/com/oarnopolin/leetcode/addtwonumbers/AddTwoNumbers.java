@@ -20,59 +20,58 @@ public class AddTwoNumbers {
         }
 
         System.out.println(resString.toString());
-
-    }
-}
-
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode() {
     }
 
-    ListNode(int val) {
-        this.val = val;
-    }
+    static class ListNode {
+        int val;
+        ListNode next;
 
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        StringBuilder numberString1 = new StringBuilder();
-        StringBuilder numberString2 = new StringBuilder();
-
-        while (l1 != null || l2 != null) {
-            l1 = appendListNumber(l1, numberString1);
-            l2 = appendListNumber(l2, numberString2);
+        ListNode() {
         }
 
-        BigInteger sum = new BigInteger(numberString1.toString()).add(new BigInteger(numberString2.toString()));
-
-
-        return createListFromDigits(sum);
-    }
-
-    public ListNode createListFromDigits(BigInteger number) {
-        ListNode resultList = null;
-        for (int digit : splitToDigitsList(number)) {
-            resultList = new ListNode(digit, resultList);
+        ListNode(int val) {
+            this.val = val;
         }
-        return resultList;
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 
-    public ListNode appendListNumber(ListNode listNode, StringBuilder builder) {
-        return Optional.ofNullable(listNode).map(node -> {
-            builder.insert(0, node.val);
-            return node.next;
-        }).orElse(null);
-    }
+    static class Solution {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            StringBuilder numberString1 = new StringBuilder();
+            StringBuilder numberString2 = new StringBuilder();
 
-    public List<Integer> splitToDigitsList(BigInteger sum) {
-        return sum.toString().chars().mapToObj(Character::getNumericValue).toList();
+            while (l1 != null || l2 != null) {
+                l1 = appendListNumber(l1, numberString1);
+                l2 = appendListNumber(l2, numberString2);
+            }
+
+            BigInteger sum = new BigInteger(numberString1.toString()).add(new BigInteger(numberString2.toString()));
+
+
+            return createListFromDigits(sum);
+        }
+
+        public ListNode createListFromDigits(BigInteger number) {
+            ListNode resultList = null;
+            for (int digit : splitToDigitsList(number)) {
+                resultList = new ListNode(digit, resultList);
+            }
+            return resultList;
+        }
+
+        public ListNode appendListNumber(ListNode listNode, StringBuilder builder) {
+            return Optional.ofNullable(listNode).map(node -> {
+                builder.insert(0, node.val);
+                return node.next;
+            }).orElse(null);
+        }
+
+        public List<Integer> splitToDigitsList(BigInteger sum) {
+            return sum.toString().chars().mapToObj(Character::getNumericValue).toList();
+        }
     }
 }

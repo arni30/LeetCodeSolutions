@@ -25,17 +25,17 @@ public class ReverseString {
         solution.reverseString(string);
         System.out.println(string);
     }
-}
 
-class Solution {
-    public void reverseString(char[] s) {
-        for (int i = 0, j = s.length - 1; i < j; i++, j--) {
+    static class Solution {
+        public void reverseString(char[] s) {
+            for (int i = 0, j = s.length - 1; i < j; i++, j--) {
 //          A ^ A = 0 (XORing a number with itself gives 0)
 //          A ^ 0 = A (XORing a number with 0 gives the number itself)
 //          A ^ B ^ A = B (Order doesn't matter in XOR)
-            s[i] ^= s[j];
-            s[j] ^= s[i];
-            s[i] ^= s[j];
+                s[i] ^= s[j];
+                s[j] ^= s[i];
+                s[i] ^= s[j];
+            }
         }
     }
 }

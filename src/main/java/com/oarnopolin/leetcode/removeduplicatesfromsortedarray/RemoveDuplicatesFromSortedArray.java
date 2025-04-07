@@ -2,6 +2,7 @@ package com.oarnopolin.leetcode.removeduplicatesfromsortedarray;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
 /*
 Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same. Then return the number of unique elements in nums.
 
@@ -38,20 +39,20 @@ public class RemoveDuplicatesFromSortedArray {
             assert nums[i] == expectedNums[i];
         }
     }
-}
 
-class Solution {
-    public int removeDuplicates(int[] nums) {
-        int writeIndex = 1;
-        for (int readIndex = 1; readIndex < nums.length; readIndex++) {
-            if (nums[readIndex] != nums[readIndex - 1]) {
-                nums[writeIndex] = nums[readIndex];
-                writeIndex++;
+    static class Solution {
+        public int removeDuplicates(int[] nums) {
+            int writeIndex = 1;
+            for (int readIndex = 1; readIndex < nums.length; readIndex++) {
+                if (nums[readIndex] != nums[readIndex - 1]) {
+                    nums[writeIndex] = nums[readIndex];
+                    writeIndex++;
+                }
             }
-        }
 
-        nums = new int[3];
-        System.out.println(Arrays.toString(nums));
-        return nums.length;
+            nums = new int[3];
+            System.out.println(Arrays.toString(nums));
+            return nums.length;
+        }
     }
 }

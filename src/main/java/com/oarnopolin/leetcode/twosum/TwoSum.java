@@ -38,26 +38,25 @@ public class TwoSum {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        var nums1 = new int[]{3,2,4};
+        var nums1 = new int[]{3, 2, 4};
         var target = 6;
         var result = solution.twoSum(nums1, target);
         System.out.println(Arrays.stream(result).boxed().collect(Collectors.toList()));
     }
 
-
-}
-
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        Map<Integer, Integer> differences = new HashMap<>();
-        for (int i = 0; i < nums.length; i++) {
-            int diff = target - nums[i];
-            Integer elem = differences.get(diff);
-            if (elem != null)
-                return new int[]{elem, i};
-            else
-                differences.put(nums[i], i);
+    static class Solution {
+        public int[] twoSum(int[] nums, int target) {
+            Map<Integer, Integer> differences = new HashMap<>();
+            for (int i = 0; i < nums.length; i++) {
+                int diff = target - nums[i];
+                Integer elem = differences.get(diff);
+                if (elem != null)
+                    return new int[]{elem, i};
+                else
+                    differences.put(nums[i], i);
+            }
+            return null;
         }
-        return null;
     }
+
 }

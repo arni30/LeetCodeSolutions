@@ -10,25 +10,25 @@ public class MergeIntervals {
         var res = solution.merge(intervals);
         System.out.println(Arrays.toString(res));
     }
-}
 
-class Solution {
+    static class Solution {
 
-    public int[][] merge(int[][] intervals) {
-        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
-        List<int[]> result = new ArrayList<>();
-        int[] prev = intervals[0];
+        public int[][] merge(int[][] intervals) {
+            Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+            List<int[]> result = new ArrayList<>();
+            int[] prev = intervals[0];
 
-        for (int i = 1; i < intervals.length; i++) {
-            int[] interval = intervals[i];
-            if (interval[0] <= prev[1]) {
-                prev[1] = Math.max(prev[1], interval[1]);
-            } else {
-                result.add(prev);
-                prev = interval;
+            for (int i = 1; i < intervals.length; i++) {
+                int[] interval = intervals[i];
+                if (interval[0] <= prev[1]) {
+                    prev[1] = Math.max(prev[1], interval[1]);
+                } else {
+                    result.add(prev);
+                    prev = interval;
+                }
             }
+            result.add(prev);
+            return result.toArray(new int[result.size()][]);
         }
-        result.add(prev);
-        return result.toArray(new int[result.size()][]);
     }
 }
